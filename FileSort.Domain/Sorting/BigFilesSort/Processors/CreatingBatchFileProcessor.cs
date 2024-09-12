@@ -19,7 +19,7 @@ namespace FileSort.Domain.Sorting.BigFilesSort.Processors
             int enqueueCount = 0;
 
             List<Task> tasks = new List<Task>();
-            using (var reader = new StreamReader(configuration.SourceFilePath, Encoding.UTF8, true, 20 * 1024 * 1024))
+            using (var reader = new StreamReader(configuration.SourceFilePath, Encoding.UTF8, true, 10 * 1024 * 1024))
             {
                 var limitPerFile = readLinesBuffer / numberOfFiles; // keep similar number of rows per file
                 var buffer = new ConcurrentQueue<string>();
@@ -61,7 +61,7 @@ namespace FileSort.Domain.Sorting.BigFilesSort.Processors
         {
 
             var processed = 0;
-            using (var fs = new FileStream(outputFile, FileMode.Append, FileAccess.Write, FileShare.None, 1 * 1024 * 1024))
+            using (var fs = new FileStream(outputFile, FileMode.Append, FileAccess.Write, FileShare.None, 5 * 1024 * 1024))
             using (var writer = new StreamWriter(fs))
             {
                 string data;

@@ -21,7 +21,7 @@ namespace FileSort.Domain.Sorting.BigFilesSort
         public async Task Start(SortEngineConfiguration configuration)
         {
             var numberOfBatchFiles = _batchFileInfoProvider.GetNumberOfBatchFiles(configuration);
-            await _creatingBatchFileProcessor.Start(configuration, numberOfBatchFiles, 10000);
+            await _creatingBatchFileProcessor.Start(configuration, numberOfBatchFiles, 30000);
             DisplaySourceAndBatchComparision(configuration);
             await _sortFileProcessor.Start(configuration);
             await _dataMergeProcessor.Start(configuration);
